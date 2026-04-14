@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM для клиник — Коммерческое предложение</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .header h1 { font-size: 36px; font-weight: 800; margin-bottom: 12px; }
+    .header p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+    /* Container */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* Section */
+    .section { padding: 48px 0; }
+    .section h2 {
+      font-size: 24px; font-weight: 700; margin-bottom: 24px;
+      padding-bottom: 8px; border-bottom: 3px solid #0ea5e9;
+      display: inline-block;
+    }
+
+    /* Feature blocks */
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .feature {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-left: 4px solid #0ea5e9;
+    }
+    .feature h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #0369a1; }
+    .feature p { font-size: 14px; color: #475569; }
+
+    /* Roles table */
+    .roles-grid { display: grid; gap: 16px; }
+    .role-card {
+      background: white; padding: 20px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .role-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .role-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .role-card p { font-size: 14px; color: #475569; }
+
+    /* List */
+    .check-list { list-style: none; }
+    .check-list li {
+      padding: 8px 0; font-size: 15px;
+      padding-left: 28px; position: relative;
+    }
+    .check-list li::before {
+      content: "\2713"; position: absolute; left: 0;
+      color: #22c55e; font-weight: 700; font-size: 16px;
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: linear-gradient(135deg, #ecfdf5, #f0f9ff);
+      border: 2px solid #0ea5e9;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .highlight h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #0369a1; }
+    .highlight p { font-size: 15px; color: #334155; }
+
+    /* Footer */
+    .footer {
+      background: #0f172a; color: white;
+      text-align: center; padding: 32px 20px;
+      margin-top: 48px;
+    }
+    .footer p { opacity: 0.7; font-size: 14px; margin: 4px 0; }
+    .footer a { color: #38bdf8; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .features { grid-template-columns: 1fr; }
+      .header h1 { font-size: 26px; }
+      .header { padding: 40px 16px; }
+      .role-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>CRM-система для клиник</h1>
+  <p>Единая платформа для управления записями, финансами, персоналом и коммуникацией с пациентами</p>
+</div>
+
+<div class="container">
+
+  <!-- Основные модули -->
+  <div class="section">
+    <h2>Что входит в систему</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Расписание и запись</h3>
+        <p>Интерактивный календарь с видом по дням, неделям, месяцам. Запись в один клик с автоматическим расчётом свободных слотов.</p>
+      </div>
+      <div class="feature">
+        <h3>База пациентов</h3>
+        <p>Полная карточка пациента: история визитов, оплаты, документы, вложения. Быстрый поиск по имени и телефону.</p>
+      </div>
+      <div class="feature">
+        <h3>Финансы и касса</h3>
+        <p>Приём оплат, учёт расходов, кассовые смены. Полная финансовая прозрачность с историей всех операций.</p>
+      </div>
+      <div class="feature">
+        <h3>Справочник услуг</h3>
+        <p>Гибкий прайс-лист с категориями. Цена фиксируется в момент записи — ретроспективных изменений нет.</p>
+      </div>
+      <div class="feature">
+        <h3>Управление персоналом</h3>
+        <p>Карточки сотрудников, должности, специализации, рабочий график, фото. Настройка прав доступа по ролям.</p>
+      </div>
+      <div class="feature">
+        <h3>Зарплата</h3>
+        <p>Автоматический расчёт: фиксированная ставка, процент от выработки или комбинированная схема. Ведомости за любой период.</p>
+      </div>
+      <div class="feature">
+        <h3>Аналитика и дашборд</h3>
+        <p>Выручка, загрузка врачей, количество визитов, динамика по периодам. Графики и ключевые показатели в реальном времени.</p>
+      </div>
+      <div class="feature">
+        <h3>Отчёты (Excel / PDF)</h3>
+        <p>Экспорт финансовых отчётов, выработки врачей, зарплатных ведомостей. Скачивание в один клик.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Виджет -->
+  <div class="section">
+    <h2>Виджет онлайн-записи</h2>
+    <div class="highlight">
+      <h3>Пациенты записываются сами — 24/7</h3>
+      <p>Встраиваемый виджет для вашего сайта. Пациент выбирает услугу, врача, дату и время — запись моментально появляется в системе. Администратору не нужно отвечать на звонки.</p>
+      <ul class="check-list" style="margin-top: 12px;">
+        <li>Установка — одна строка кода на сайт</li>
+        <li>Показывает только реально свободные слоты</li>
+        <li>Работает на телефонах и компьютерах</li>
+        <li>Увеличивает поток пациентов на 10–20%</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WhatsApp -->
+  <div class="section">
+    <h2>WhatsApp-уведомления</h2>
+    <div class="highlight">
+      <h3>Автоматические напоминания пациентам</h3>
+      <p>Система сама отправляет сообщения в WhatsApp — без участия персонала.</p>
+      <ul class="check-list" style="margin-top: 12px;">
+        <li>Подтверждение записи — сразу после бронирования</li>
+        <li>Напоминание за 24 часа до визита</li>
+        <li>Напоминание за 1 час до визита</li>
+        <li>Благодарность после завершения приёма</li>
+      </ul>
+      <p style="margin-top: 12px; font-size: 14px; color: #475569;">Результат: меньше неявок, больше возвратных визитов, лояльность пациентов.</p>
+    </div>
+  </div>
+
+  <!-- Роли -->
+  <div class="section">
+    <h2>Роли и права доступа</h2>
+    <p style="margin-bottom: 20px; color: #475569;">Каждый сотрудник видит только то, что ему нужно для работы.</p>
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-icon" style="background: #fef3c7;">&#128081;</div>
+        <div>
+          <h3>Владелец</h3>
+          <p>Полный контроль: финансы, зарплаты, персонал, настройки, аналитика. Управление несколькими филиалами из одного аккаунта.</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon" style="background: #dbeafe;">&#129658;</div>
+        <div>
+          <h3>Главный врач</h3>
+          <p>Своё расписание + статистика всех врачей. Редактирование услуг и цен. Доступ к дашборду и отчётам.</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon" style="background: #e0e7ff;">&#128221;</div>
+        <div>
+          <h3>Администратор</h3>
+          <p>Запись пациентов, управление расписанием, приём оплаты, касса, отправка WhatsApp-сообщений.</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon" style="background: #dcfce7;">&#129657;</div>
+        <div>
+          <h3>Врач</h3>
+          <p>Только своё расписание и свои пациенты. Просмотр личной выработки. Без доступа к финансам других.</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon" style="background: #fce7f3;">&#128200;</div>
+        <div>
+          <h3>Бухгалтер</h3>
+          <p>Полный доступ к финансам: оплаты, расходы, зарплаты, отчёты. Без доступа к медкарточкам и расписанию.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Доп. возможности -->
+  <div class="section">
+    <h2>Дополнительно</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Мультиклиника</h3>
+        <p>Несколько филиалов в одной системе. Переключение между клиниками одним кликом. Данные полностью изолированы.</p>
+      </div>
+      <div class="feature">
+        <h3>Двухфакторная аутентификация</h3>
+        <p>Дополнительная защита аккаунтов через код из приложения (Google Authenticator, Authy).</p>
+      </div>
+      <div class="feature">
+        <h3>Журнал действий</h3>
+        <p>Все действия с пациентами и финансами записываются. Кто, когда и что изменил — всегда можно проверить.</p>
+      </div>
+      <div class="feature">
+        <h3>Мобильная версия</h3>
+        <p>Адаптивный интерфейс работает на телефоне и планшете. Полный функционал без установки приложения.</p>
+      </div>
+      <div class="feature">
+        <h3>Обновления в реальном времени</h3>
+        <p>Новая запись или оплата сразу видна всем — без перезагрузки страницы. WebSocket-технология.</p>
+      </div>
+      <div class="feature">
+        <h3>Восстановление пароля</h3>
+        <p>Сброс пароля через email. Сотрудник восстанавливает доступ самостоятельно, без звонков администратору.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Преимущества -->
+  <div class="section">
+    <h2>Почему мы</h2>
+    <ul class="check-list">
+      <li>Замена Excel-таблиц и блокнотов — всё в одном месте</li>
+      <li>Разработано специально для клиник Кыргызстана (валюта KGS, часовой пояс Бишкек, формат +996)</li>
+      <li>Облачная система — работает из любого браузера, ничего не нужно устанавливать</li>
+      <li>Данные каждой клиники полностью изолированы и защищены</li>
+      <li>Быстрый запуск — регистрация клиники и начало работы за 10 минут</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><strong>CRM для клиник</strong></p>
+  <p>Вопросы и демонстрация: <a href="mailto:crmclinicsupport@gmail.com">crmclinicsupport@gmail.com</a></p>
+  <p style="margin-top: 8px;">&copy; 2026</p>
+</div>
+
+</body>
+</html>
