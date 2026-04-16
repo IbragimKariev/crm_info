@@ -3,15 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRM для клиник — Презентация</title>
+  <title>MEDORA — Облачная CRM для клиник</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    :root {
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --red: #ef4444;
+      --cyan: #06b6d4;
+      --amber: #f59e0b;
+      --slate-50: #f8fafc;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+    }
+
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: #0a0a0a;
+      background: #09090b;
       color: #fff;
       overflow: hidden;
       height: 100vh;
@@ -45,493 +61,564 @@
       transform: translateX(-100px);
     }
 
-    /* Slide 1 — Title */
-    .slide-1 {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    /* ═══════════════════════════════════════════════ */
+    /*  COMMON ELEMENTS                                */
+    /* ═══════════════════════════════════════════════ */
+
+    .tag {
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 20px;
+      color: var(--slate-400);
+      line-height: 1.6;
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 1 — HERO                                 */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-hero {
+      background: linear-gradient(135deg, #09090b 0%, var(--slate-900) 50%, #09090b 100%);
       text-align: center;
     }
 
-    .slide-1::before {
+    .slide-hero::before {
       content: '';
       position: absolute;
       top: -50%; left: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.04) 0%, transparent 40%);
+      animation: heroGlow 10s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes heroGlow {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.05) rotate(1deg); }
     }
 
-    .logo-icon {
-      width: 80px; height: 80px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 40px;
+    .brand {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 16px;
       margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
     }
 
-    .slide-1 h1 {
-      font-size: 56px;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 16px;
+    .brand-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 42px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
       position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    }
+
+    .brand-icon::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      z-index: -1;
+      filter: blur(12px);
+      opacity: 0.4;
+    }
+
+    .brand-name {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff 0%, var(--slate-300) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .slide-1 .subtitle {
-      font-size: 22px;
-      color: #94a3b8;
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-      line-height: 1.5;
+    .hero-slogan {
+      position: relative; z-index: 1;
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, var(--slate-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 700px;
     }
 
-    /* Slide 2 — Problem */
-    .slide-2 {
-      background: linear-gradient(135deg, #1a0a0a 0%, #1e293b 100%);
+    .hero-subtitle {
+      position: relative; z-index: 1;
+      font-size: 20px;
+      color: var(--slate-400);
+      font-weight: 400;
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .hero-badges {
+      position: relative; z-index: 1;
+      display: flex; gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--slate-400);
+    }
+
+    .hero-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 2 — PROBLEM                              */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-problem {
+      background: linear-gradient(135deg, #1a0a0a 0%, var(--slate-800) 100%);
       text-align: left;
       align-items: flex-start;
     }
 
-    .slide-2 .tag {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .slide-2 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 48px;
-      line-height: 1.2;
-    }
+    .slide-problem .tag { background: rgba(239, 68, 68, 0.12); color: #f87171; }
 
     .problems-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 20px;
       width: 100%;
-      max-width: 900px;
+      max-width: 920px;
     }
 
     .problem-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
       padding: 28px;
-      transition: transform 0.3s;
+      transition: all 0.3s;
     }
 
     .problem-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.15);
+      background: rgba(239, 68, 68, 0.03);
     }
 
-    .problem-card .icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
+    .problem-card .icon { font-size: 32px; margin-bottom: 14px; }
+    .problem-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .problem-card p { font-size: 14px; color: var(--slate-400); line-height: 1.55; }
 
-    .problem-card h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 3 — SOLUTION                             */
+    /* ═══════════════════════════════════════════════ */
 
-    .problem-card p {
-      font-size: 14px;
-      color: #94a3b8;
-      line-height: 1.5;
-    }
-
-    /* Slide 3 — Solution */
-    .slide-3 {
-      background: linear-gradient(135deg, #0a1a0a 0%, #1e293b 100%);
+    .slide-solution {
+      background: linear-gradient(135deg, #041a0a 0%, var(--slate-800) 100%);
       text-align: left;
       align-items: flex-start;
     }
 
-    .slide-3 .tag {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .slide-3 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .slide-3 .desc {
-      font-size: 20px;
-      color: #94a3b8;
-      margin-bottom: 48px;
-      max-width: 700px;
-      line-height: 1.6;
-    }
+    .slide-solution .tag { background: rgba(34, 197, 94, 0.12); color: #4ade80; }
 
     .solution-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
       width: 100%;
       max-width: 1000px;
     }
 
     .solution-card {
-      background: rgba(34, 197, 94, 0.04);
-      border: 1px solid rgba(34, 197, 94, 0.1);
+      background: rgba(34, 197, 94, 0.03);
+      border: 1px solid rgba(34, 197, 94, 0.08);
       border-radius: 16px;
       padding: 28px;
       text-align: center;
-      transition: transform 0.3s;
+      transition: all 0.3s;
     }
 
     .solution-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(34, 197, 94, 0.3);
+      border-color: rgba(34, 197, 94, 0.25);
     }
 
-    .solution-card .icon { font-size: 36px; margin-bottom: 16px; }
-    .solution-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .solution-card p { font-size: 13px; color: #94a3b8; line-height: 1.5; }
+    .solution-card .icon { font-size: 36px; margin-bottom: 14px; }
+    .solution-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .solution-card p { font-size: 13px; color: var(--slate-500); line-height: 1.5; }
 
-    /* Slide 4 — Features */
-    .slide-4 {
-      background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 4 — FEATURES                             */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-features {
+      background: linear-gradient(135deg, var(--slate-900) 0%, #1a1a2e 100%);
       text-align: left;
       align-items: flex-start;
     }
 
-    .slide-4 .tag {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .slide-4 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 48px;
-    }
+    .slide-features .tag { background: rgba(59, 130, 246, 0.12); color: #60a5fa; }
 
     .features-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
       width: 100%;
       max-width: 1100px;
     }
 
     .feature-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 14px;
-      padding: 24px;
+      padding: 22px;
       text-align: center;
       transition: all 0.3s;
     }
 
     .feature-item:hover {
-      transform: translateY(-4px);
-      border-color: rgba(59, 130, 246, 0.3);
-      background: rgba(59, 130, 246, 0.05);
+      transform: translateY(-3px);
+      border-color: rgba(59, 130, 246, 0.25);
+      background: rgba(59, 130, 246, 0.04);
     }
 
-    .feature-item .icon { font-size: 28px; margin-bottom: 12px; }
-    .feature-item h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-    .feature-item p { font-size: 12px; color: #64748b; line-height: 1.4; }
+    .feature-item .icon { font-size: 28px; margin-bottom: 10px; }
+    .feature-item h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .feature-item p { font-size: 11px; color: var(--slate-500); line-height: 1.4; }
 
-    /* Slide 5 — Calendar demo */
-    .slide-5 {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 5 — МКБ-10 & EPICRISIS                   */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-medical {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1030 50%, var(--slate-900) 100%);
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .slide-medical .tag { background: rgba(139, 92, 246, 0.12); color: #a78bfa; }
+
+    .medical-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    .medical-block {
+      background: rgba(139, 92, 246, 0.03);
+      border: 1px solid rgba(139, 92, 246, 0.1);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .medical-block:hover {
+      border-color: rgba(139, 92, 246, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .medical-block .block-icon { font-size: 40px; margin-bottom: 16px; }
+    .medical-block h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+    .medical-block p { font-size: 14px; color: var(--slate-400); line-height: 1.6; margin-bottom: 16px; }
+
+    .medical-list {
+      list-style: none;
+    }
+
+    .medical-list li {
+      font-size: 13px;
+      color: var(--slate-300);
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .medical-list li:last-child { border: none; }
+    .medical-list li::before { content: '✦'; color: #a78bfa; font-size: 10px; }
+
+    .icd-demo {
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      font-family: 'Inter', monospace;
+      font-size: 12px;
+      color: var(--slate-300);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    .icd-demo .code { color: #a78bfa; font-weight: 700; }
+    .icd-demo .sep { color: var(--slate-600); margin: 0 6px; }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 6 — WHATSAPP                             */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-whatsapp {
+      background: linear-gradient(135deg, #041a0a 0%, #0a1a0a 50%, var(--slate-900) 100%);
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .slide-whatsapp .tag { background: rgba(34, 197, 94, 0.12); color: #4ade80; }
+
+    .whatsapp-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    .wa-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .wa-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px;
+      background: rgba(34, 197, 94, 0.03);
+      border: 1px solid rgba(34, 197, 94, 0.08);
+      border-radius: 14px;
+      transition: all 0.3s;
+    }
+
+    .wa-feature:hover {
+      border-color: rgba(34, 197, 94, 0.2);
+      transform: translateX(4px);
+    }
+
+    .wa-feature .wa-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: rgba(34, 197, 94, 0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .wa-feature h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .wa-feature p { font-size: 12px; color: var(--slate-500); line-height: 1.4; }
+
+    .wa-phone {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(34, 197, 94, 0.12);
+      border-radius: 24px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .wa-phone-header {
+      display: flex; align-items: center; gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 4px;
+    }
+
+    .wa-phone-header .avatar {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--green), #16a34a);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .wa-phone-header .name { font-size: 15px; font-weight: 600; }
+    .wa-phone-header .sub { font-size: 11px; color: var(--slate-500); }
+
+    .wa-msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px 16px 16px 4px;
+      font-size: 13px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .wa-msg.incoming {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.12);
+      color: var(--slate-300);
+    }
+
+    .wa-msg .time {
+      font-size: 10px;
+      color: var(--slate-600);
+      float: right;
+      margin-left: 12px;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 7 — CALENDAR                             */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-calendar {
+      background: linear-gradient(135deg, var(--slate-900) 0%, #1e1b4b 100%);
       text-align: center;
     }
 
-    .slide-5 .tag {
-      background: rgba(139, 92, 246, 0.15);
-      color: #a78bfa;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .slide-5 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .slide-5 .desc {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 48px;
-      max-width: 600px;
-      line-height: 1.6;
-    }
+    .slide-calendar .tag { background: rgba(99, 102, 241, 0.12); color: #818cf8; }
 
     .calendar-preview {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 20px;
-      padding: 32px;
+      padding: 28px;
       width: 100%;
-      max-width: 800px;
+      max-width: 840px;
     }
 
     .cal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    .cal-header h3 { font-size: 18px; font-weight: 600; }
-    .cal-header span { color: #64748b; font-size: 14px; }
+    .cal-header h3 { font-size: 17px; font-weight: 600; }
+    .cal-header span { color: var(--slate-500); font-size: 13px; }
 
     .cal-grid {
       display: grid;
-      grid-template-columns: 80px repeat(3, 1fr);
+      grid-template-columns: 70px repeat(3, 1fr);
       gap: 8px;
     }
 
     .cal-time {
-      font-size: 13px;
-      color: #475569;
-      padding: 12px 0;
-      text-align: right;
-      padding-right: 12px;
+      font-size: 13px; color: var(--slate-600);
+      padding: 12px 0; text-align: right; padding-right: 12px;
     }
 
     .cal-doctor-header {
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px;
-      text-align: center;
-      border-radius: 8px;
-      margin-bottom: 4px;
+      font-size: 13px; font-weight: 600;
+      padding: 8px; text-align: center;
+      border-radius: 10px; margin-bottom: 4px;
     }
 
     .cal-slot {
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 10px 12px;
       font-size: 12px;
       font-weight: 500;
+      transition: all 0.2s;
     }
 
     .cal-slot.busy {
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.25);
       color: #93c5fd;
     }
 
     .cal-slot.busy-green {
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
       color: #86efac;
     }
 
     .cal-slot.busy-purple {
-      background: rgba(139, 92, 246, 0.15);
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
       color: #c4b5fd;
     }
 
     .cal-slot.free {
-      background: rgba(255,255,255,0.02);
-      border: 1px dashed rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.015);
+      border: 1px dashed rgba(255,255,255,0.05);
     }
 
-    /* Slide 6 — Tariffs */
-    .slide-6 {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 8 — CONTROL & SECURITY                   */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-control {
+      background: linear-gradient(135deg, var(--slate-900) 0%, #0a1520 100%);
       text-align: center;
     }
 
-    .slide-6 .tag {
-      background: rgba(251, 191, 36, 0.15);
-      color: #fbbf24;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
+    .slide-control .tag { background: rgba(6, 182, 212, 0.12); color: #22d3ee; }
 
-    .slide-6 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 48px;
-    }
-
-    .tariffs-grid {
+    .control-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 24px;
-      max-width: 1000px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 960px;
       width: 100%;
     }
 
-    .tariff-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 36px 28px;
-      text-align: left;
+    .control-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
       transition: all 0.3s;
-      position: relative;
     }
 
-    .tariff-card:hover {
-      transform: translateY(-6px);
+    .control-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(6, 182, 212, 0.2);
+      background: rgba(6, 182, 212, 0.03);
     }
 
-    .tariff-card.popular {
-      border-color: rgba(59, 130, 246, 0.4);
-      background: rgba(59, 130, 246, 0.05);
-    }
+    .control-card .icon { font-size: 36px; margin-bottom: 14px; }
+    .control-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .control-card p { font-size: 13px; color: var(--slate-500); line-height: 1.5; }
 
-    .tariff-card.popular::after {
-      content: 'Популярный';
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      padding: 4px 14px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-    }
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 9 — WIDGET                               */
+    /* ═══════════════════════════════════════════════ */
 
-    .tariff-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .tariff-price {
-      font-size: 36px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .tariff-price span {
-      font-size: 16px;
-      font-weight: 400;
-      color: #64748b;
-    }
-
-    .tariff-desc {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .tariff-features {
-      list-style: none;
-    }
-
-    .tariff-features li {
-      font-size: 14px;
-      color: #cbd5e1;
-      padding: 6px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .tariff-features li::before {
-      content: '✓';
-      color: #4ade80;
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    /* Slide 7 — Widget */
-    .slide-7 {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    .slide-widget {
+      background: linear-gradient(135deg, var(--slate-800) 0%, var(--slate-900) 100%);
       text-align: left;
       align-items: flex-start;
     }
 
-    .slide-7 .tag {
-      background: rgba(6, 182, 212, 0.15);
-      color: #22d3ee;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .slide-7 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .slide-7 .desc {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 40px;
-      max-width: 700px;
-      line-height: 1.6;
-    }
+    .slide-widget .tag { background: rgba(6, 182, 212, 0.12); color: #22d3ee; }
 
     .widget-features {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      max-width: 800px;
+      max-width: 820px;
     }
 
     .widget-feature {
@@ -541,109 +628,130 @@
     }
 
     .widget-feature .wf-icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      background: rgba(6, 182, 212, 0.1);
+      width: 48px; height: 48px; min-width: 48px;
+      background: rgba(6, 182, 212, 0.08);
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 22px;
     }
 
     .widget-feature h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-    .widget-feature p { font-size: 13px; color: #64748b; line-height: 1.4; }
+    .widget-feature p { font-size: 13px; color: var(--slate-500); line-height: 1.45; }
 
-    /* Slide 8 — Security */
-    .slide-8 {
-      background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 10 — TARIFFS                              */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-tariffs {
+      background: linear-gradient(135deg, var(--slate-900) 0%, var(--slate-800) 100%);
       text-align: center;
     }
 
-    .slide-8 .tag {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
+    .slide-tariffs .tag { background: rgba(245, 158, 11, 0.12); color: #fbbf24; }
 
-    .slide-8 h2 {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 48px;
-    }
-
-    .security-grid {
+    .tariffs-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 24px;
-      max-width: 900px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1020px;
+      width: 100%;
     }
 
-    .security-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 32px 24px;
-      text-align: center;
+    .tariff-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 34px 26px;
+      text-align: left;
       transition: all 0.3s;
+      position: relative;
     }
 
-    .security-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(34, 197, 94, 0.2);
+    .tariff-card:hover { transform: translateY(-6px); }
+
+    .tariff-card.popular {
+      border-color: rgba(59, 130, 246, 0.35);
+      background: rgba(59, 130, 246, 0.04);
     }
 
-    .security-card .icon { font-size: 36px; margin-bottom: 16px; }
-    .security-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .security-card p { font-size: 13px; color: #64748b; line-height: 1.5; }
+    .tariff-card.popular::after {
+      content: 'Популярный';
+      position: absolute;
+      top: -12px; right: 20px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
 
-    /* Slide 9 — CTA */
-    .slide-9 {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    .tariff-name {
+      font-size: 13px; font-weight: 600; color: var(--slate-500);
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .tariff-price {
+      font-size: 36px; font-weight: 800; margin-bottom: 4px;
+    }
+
+    .tariff-price span { font-size: 15px; font-weight: 400; color: var(--slate-500); }
+
+    .tariff-desc {
+      font-size: 14px; color: var(--slate-500);
+      margin-bottom: 22px; padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .tariff-features { list-style: none; }
+    .tariff-features li {
+      font-size: 14px; color: var(--slate-300);
+      padding: 6px 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tariff-features li::before { content: '✓'; color: #4ade80; font-weight: 700; }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  SLIDE 11 — CTA                                 */
+    /* ═══════════════════════════════════════════════ */
+
+    .slide-cta {
+      background: linear-gradient(135deg, #09090b 0%, var(--slate-900) 50%, #09090b 100%);
       text-align: center;
     }
 
-    .slide-9::before {
+    .slide-cta::before {
       content: '';
       position: absolute;
       top: -50%; left: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 35%);
     }
 
-    .slide-9 h2 {
+    .cta-title {
+      position: relative; z-index: 1;
       font-size: 52px;
       font-weight: 800;
       margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+      background: linear-gradient(135deg, #fff 0%, var(--slate-400) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .slide-9 .desc {
+    .cta-desc {
+      position: relative; z-index: 1;
       font-size: 20px;
-      color: #94a3b8;
+      color: var(--slate-400);
       margin-bottom: 40px;
-      position: relative;
-      z-index: 1;
-      max-width: 500px;
+      max-width: 520px;
       line-height: 1.6;
     }
 
     .cta-button {
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      position: relative; z-index: 1;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
       color: #fff;
       border: none;
       padding: 18px 48px;
@@ -659,49 +767,53 @@
     }
 
     .cta-button:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: 0 25px 70px rgba(59, 130, 246, 0.4);
     }
 
     .contact-info {
-      position: relative;
-      z-index: 1;
-      color: #64748b;
-      font-size: 16px;
+      position: relative; z-index: 1;
+      color: var(--slate-500); font-size: 16px;
     }
 
     .contact-info a {
-      color: #94a3b8;
-      text-decoration: none;
+      color: var(--slate-400); text-decoration: none;
+      transition: color 0.2s;
     }
 
-    /* Navigation */
+    .contact-info a:hover { color: #fff; }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  NAVIGATION                                     */
+    /* ═══════════════════════════════════════════════ */
+
     .nav {
       position: fixed;
-      bottom: 32px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 6px;
       z-index: 100;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(9, 9, 11, 0.85);
       backdrop-filter: blur(20px);
       padding: 8px 16px;
       border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .nav-dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.12);
       cursor: pointer;
       transition: all 0.3s;
     }
 
+    .nav-dot:hover { background: rgba(255,255,255,0.25); }
+
     .nav-dot.active {
-      background: #3b82f6;
+      background: var(--blue);
       box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
       width: 28px;
       border-radius: 6px;
@@ -709,175 +821,262 @@
 
     .slide-counter {
       position: fixed;
-      top: 32px;
-      right: 40px;
-      font-size: 14px;
-      color: #475569;
+      top: 28px; right: 40px;
+      font-size: 13px;
+      color: var(--slate-600);
       z-index: 100;
       font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .brand-top {
+      position: fixed;
+      top: 28px; left: 40px;
+      z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 16px; font-weight: 700;
+      color: var(--slate-500);
+      letter-spacing: 0.5px;
+    }
+
+    .brand-top .mini-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1;
     }
 
     .arrow-hint {
       position: fixed;
-      bottom: 80px;
+      bottom: 68px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 13px;
-      color: #334155;
+      font-size: 12px;
+      color: rgba(100, 116, 139, 0.5);
       z-index: 100;
       white-space: nowrap;
     }
 
-    /* ===== TABLET (max 1024px) ===== */
+    /* Mobile swipe hint */
+    .swipe-hint {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 101;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: swipeFadeIn 0.5s ease-out;
+      transition: opacity 0.5s;
+    }
+
+    .swipe-hint.hidden { opacity: 0; pointer-events: none; }
+
+    .swipe-arrow {
+      width: 40px; height: 40px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: swipeBounce 1.5s ease-in-out infinite;
+    }
+
+    .swipe-arrow svg {
+      width: 18px; height: 18px;
+      stroke: rgba(255,255,255,0.4);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .swipe-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes swipeBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    @keyframes swipeFadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════ */
+    /*  RESPONSIVE — TABLET                            */
+    /* ═══════════════════════════════════════════════ */
+
     @media (max-width: 1024px) {
       .slide { padding: 40px 40px 80px; }
 
-      .slide-1 h1 { font-size: 42px; }
-      .slide-1 .subtitle { font-size: 18px; }
+      .hero-slogan { font-size: 40px; }
+      .hero-subtitle { font-size: 17px; }
+      .brand-name { font-size: 40px; }
+      .brand-icon { width: 60px; height: 60px; font-size: 28px; }
 
-      .slide-2 h2, .slide-3 h2, .slide-4 h2,
-      .slide-5 h2, .slide-6 h2, .slide-7 h2,
-      .slide-8 h2, .slide-9 h2 { font-size: 36px; margin-bottom: 32px; }
+      .section-title { font-size: 36px; margin-bottom: 16px; }
+      .section-desc { font-size: 17px; margin-bottom: 36px; }
 
-      .features-grid { grid-template-columns: 1fr 1fr 1fr; }
-      .security-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+      .medical-content { gap: 20px; }
+      .medical-block { padding: 24px; }
+      .medical-block h3 { font-size: 18px; }
+      .whatsapp-content { gap: 20px; }
+      .control-grid { gap: 14px; }
       .tariffs-grid { gap: 16px; }
       .tariff-card { padding: 28px 20px; }
-      .tariff-price { font-size: 28px; }
-
+      .tariff-price { font-size: 30px; }
       .calendar-preview { padding: 20px; }
-      .cal-slot { padding: 8px; font-size: 11px; }
+      .cal-slot { padding: 8px 10px; font-size: 11px; }
+      .cta-title { font-size: 40px; }
     }
 
-    /* ===== MOBILE LANDSCAPE / SMALL TABLET (max 768px) ===== */
+    /* ═══════════════════════════════════════════════ */
+    /*  RESPONSIVE — MOBILE                            */
+    /* ═══════════════════════════════════════════════ */
+
     @media (max-width: 768px) {
       body { overflow-y: auto; overflow-x: hidden; }
 
       .slide {
         position: relative;
-        min-height: 100vh;
-        height: auto;
-        padding: 32px 24px 90px;
+        min-height: 100vh; height: auto;
+        padding: 28px 20px 90px;
         display: none;
       }
 
-      .slide.active {
-        display: flex;
-      }
+      .slide.active { display: flex; }
 
-      .slide-1 h1 { font-size: 36px; }
-      .slide-1 .subtitle { font-size: 16px; max-width: 100%; }
-      .logo-icon { width: 60px; height: 60px; font-size: 30px; border-radius: 16px; margin-bottom: 24px; }
+      .hero-slogan { font-size: 32px; max-width: 100%; }
+      .hero-subtitle { font-size: 15px; max-width: 100%; }
+      .brand { gap: 12px; margin-bottom: 24px; }
+      .brand-icon { width: 52px; height: 52px; font-size: 24px; border-radius: 14px; }
+      .brand-name { font-size: 32px; }
+      .hero-badges { gap: 16px; }
+      .hero-badge { font-size: 12px; }
 
-      .slide-2 h2, .slide-3 h2, .slide-4 h2,
-      .slide-5 h2, .slide-6 h2, .slide-7 h2,
-      .slide-8 h2, .slide-9 h2 { font-size: 28px; margin-bottom: 24px; }
+      .section-title { font-size: 26px; margin-bottom: 12px; }
+      .section-desc { font-size: 14px; margin-bottom: 24px; }
 
-      .slide-3 .desc, .slide-5 .desc, .slide-7 .desc, .slide-9 .desc {
-        font-size: 15px;
-        margin-bottom: 28px;
-      }
-
-      .problems-grid { grid-template-columns: 1fr; gap: 16px; }
+      .problems-grid { grid-template-columns: 1fr; gap: 14px; }
       .problem-card { padding: 20px; }
-      .problem-card .icon { font-size: 26px; }
-      .problem-card h3 { font-size: 16px; }
 
       .solution-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .solution-card { padding: 20px; }
 
-      .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .feature-item { padding: 16px; }
 
+      .medical-content { grid-template-columns: 1fr; gap: 16px; }
+      .medical-block { padding: 22px; }
+      .medical-block .block-icon { font-size: 32px; }
+      .medical-block h3 { font-size: 18px; }
+
+      .whatsapp-content { grid-template-columns: 1fr; gap: 20px; }
+      .wa-feature { padding: 14px; }
+
       .calendar-preview { padding: 16px; }
-      .cal-grid { grid-template-columns: 50px repeat(3, 1fr); gap: 4px; }
+      .cal-grid { grid-template-columns: 46px repeat(3, 1fr); gap: 4px; }
       .cal-time { font-size: 11px; padding-right: 6px; }
       .cal-slot { padding: 6px 4px; font-size: 10px; }
       .cal-doctor-header { font-size: 11px; padding: 6px 4px; }
-      .cal-header h3 { font-size: 14px; }
-      .cal-header span { font-size: 12px; }
 
-      .tariffs-grid { grid-template-columns: 1fr; gap: 16px; max-width: 400px; }
-      .tariff-card { padding: 28px 24px; }
-      .tariff-price { font-size: 32px; }
+      .control-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .control-card { padding: 20px 16px; }
 
       .widget-features { grid-template-columns: 1fr; gap: 16px; }
 
-      .security-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .security-card { padding: 20px 16px; }
+      .tariffs-grid { grid-template-columns: 1fr; gap: 16px; max-width: 400px; }
+      .tariff-price { font-size: 32px; }
 
-      .slide-9 h2 { font-size: 32px; }
+      .cta-title { font-size: 30px; }
+      .cta-desc { font-size: 16px; }
       .cta-button { padding: 14px 36px; font-size: 16px; }
 
-      .nav { bottom: 16px; padding: 6px 12px; }
-      .slide-counter { top: 16px; right: 20px; font-size: 12px; }
-      .arrow-hint { bottom: 52px; font-size: 11px; }
+      .nav { bottom: 14px; padding: 6px 12px; }
+      .slide-counter { top: 14px; right: 16px; font-size: 11px; }
+      .brand-top { top: 14px; left: 16px; font-size: 14px; }
+      .brand-top .mini-icon { width: 24px; height: 24px; font-size: 12px; border-radius: 6px; }
+      .arrow-hint { display: none; }
+      .swipe-hint { display: flex; }
     }
 
-    /* ===== MOBILE PORTRAIT (max 480px) ===== */
+    /* ═══════════════════════════════════════════════ */
+    /*  RESPONSIVE — SMALL MOBILE                      */
+    /* ═══════════════════════════════════════════════ */
+
     @media (max-width: 480px) {
-      .slide { padding: 24px 16px 80px; }
+      .slide { padding: 20px 16px 80px; }
 
-      .slide-1 h1 { font-size: 28px; }
-      .slide-1 .subtitle { font-size: 14px; }
-      .logo-icon { width: 50px; height: 50px; font-size: 24px; border-radius: 14px; margin-bottom: 20px; }
+      .hero-slogan { font-size: 26px; }
+      .hero-subtitle { font-size: 13px; }
+      .brand-icon { width: 44px; height: 44px; font-size: 20px; border-radius: 12px; }
+      .brand-name { font-size: 26px; }
+      .hero-badges { flex-direction: column; gap: 10px; align-items: center; }
 
-      .slide-2 h2, .slide-3 h2, .slide-4 h2,
-      .slide-5 h2, .slide-6 h2, .slide-7 h2,
-      .slide-8 h2, .slide-9 h2 { font-size: 22px; margin-bottom: 20px; }
+      .section-title { font-size: 22px; }
+      .tag { font-size: 11px; padding: 4px 12px; margin-bottom: 16px; }
+      .section-desc { font-size: 13px; margin-bottom: 20px; }
 
-      .slide-2 .tag, .slide-3 .tag, .slide-4 .tag,
-      .slide-5 .tag, .slide-6 .tag, .slide-7 .tag,
-      .slide-8 .tag { font-size: 11px; padding: 4px 12px; margin-bottom: 16px; }
-
-      .slide-3 .desc, .slide-5 .desc, .slide-7 .desc, .slide-9 .desc {
-        font-size: 13px;
-        margin-bottom: 20px;
-      }
-
-      .problems-grid { gap: 12px; }
+      .problems-grid { gap: 10px; }
       .problem-card { padding: 16px; }
-      .problem-card .icon { font-size: 22px; margin-bottom: 8px; }
-      .problem-card h3 { font-size: 14px; }
+      .problem-card .icon { font-size: 24px; }
+      .problem-card h3 { font-size: 15px; }
       .problem-card p { font-size: 12px; }
 
-      .solution-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .solution-grid { gap: 8px; }
       .solution-card { padding: 14px; }
-      .solution-card .icon { font-size: 24px; margin-bottom: 8px; }
+      .solution-card .icon { font-size: 26px; }
       .solution-card h3 { font-size: 13px; }
       .solution-card p { font-size: 11px; }
 
-      .features-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .features-grid { gap: 8px; }
       .feature-item { padding: 12px; }
-      .feature-item .icon { font-size: 22px; margin-bottom: 8px; }
+      .feature-item .icon { font-size: 22px; margin-bottom: 6px; }
       .feature-item h3 { font-size: 12px; }
       .feature-item p { font-size: 10px; }
 
-      .cal-grid { grid-template-columns: 40px repeat(3, 1fr); gap: 3px; }
-      .cal-time { font-size: 10px; padding-right: 4px; }
-      .cal-slot { padding: 4px 3px; font-size: 8px; }
+      .medical-block { padding: 18px; }
+      .medical-block .block-icon { font-size: 28px; margin-bottom: 10px; }
+      .medical-block h3 { font-size: 16px; }
+      .medical-block p { font-size: 12px; }
+      .medical-list li { font-size: 12px; }
+      .icd-demo { font-size: 11px; padding: 10px 14px; }
+
+      .wa-feature .wa-icon { width: 36px; height: 36px; min-width: 36px; font-size: 16px; }
+      .wa-feature h3 { font-size: 13px; }
+      .wa-feature p { font-size: 11px; }
+      .wa-msg { font-size: 12px; padding: 10px 14px; }
+
+      .cal-grid { grid-template-columns: 36px repeat(3, 1fr); gap: 3px; }
+      .cal-time { font-size: 9px; }
+      .cal-slot { padding: 4px 3px; font-size: 9px; }
       .cal-doctor-header { font-size: 9px; padding: 4px 2px; }
       .cal-header { flex-direction: column; align-items: flex-start; gap: 4px; }
-      .cal-header h3 { font-size: 12px; }
 
-      .tariff-card.popular::after { font-size: 10px; padding: 3px 10px; top: -10px; right: 14px; }
+      .control-grid { grid-template-columns: 1fr; gap: 10px; }
+      .control-card { padding: 18px; }
+      .control-card .icon { font-size: 28px; }
+
+      .widget-feature .wf-icon { width: 40px; height: 40px; min-width: 40px; font-size: 18px; }
+
+      .tariff-card.popular::after { font-size: 10px; padding: 3px 10px; }
       .tariff-price { font-size: 28px; }
       .tariff-features li { font-size: 13px; }
 
-      .widget-feature .wf-icon { width: 40px; height: 40px; min-width: 40px; font-size: 18px; }
-      .widget-feature h3 { font-size: 14px; }
-      .widget-feature p { font-size: 12px; }
-
-      .security-grid { grid-template-columns: 1fr; gap: 10px; }
-      .security-card { padding: 16px; }
-      .security-card .icon { font-size: 28px; margin-bottom: 10px; }
-      .security-card h3 { font-size: 14px; }
-
-      .slide-9 h2 { font-size: 24px; }
-      .slide-9 .desc { font-size: 14px; }
+      .cta-title { font-size: 24px; }
+      .cta-desc { font-size: 14px; }
       .cta-button { padding: 12px 28px; font-size: 14px; border-radius: 10px; margin-bottom: 20px; }
       .contact-info { font-size: 13px; }
-      .contact-info a { font-size: 13px; }
 
       .nav-dot { width: 8px; height: 8px; }
       .nav-dot.active { width: 22px; }
@@ -886,84 +1085,108 @@
 </head>
 <body>
 
-  <!-- Slide 1: Title -->
-  <div class="slide slide-1 active" data-index="0">
-    <div class="logo-icon">🦷</div>
-    <h1>CRM для клиник</h1>
-    <p class="subtitle">Облачная система управления клиникой. Замените Excel и блокноты на единую платформу для записей, финансов и аналитики.</p>
+  <!-- Top brand -->
+  <div class="brand-top">
+    <div class="mini-icon">+</div>
+    MEDORA
   </div>
 
-  <!-- Slide 2: Problem -->
-  <div class="slide slide-2" data-index="1">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 1: HERO                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-hero active" data-index="0">
+    <div class="brand">
+      <div class="brand-icon">+</div>
+      <div class="brand-name">MEDORA</div>
+    </div>
+    <h1 class="hero-slogan">Управляйте клиникой,<br>а не хаосом</h1>
+    <p class="hero-subtitle">Облачная CRM-платформа для частных клиник. Записи, финансы, аналитика и WhatsApp-уведомления — всё в одной системе.</p>
+    <div class="hero-badges">
+      <div class="hero-badge"><div class="dot" style="background: var(--green);"></div> Стоматологии</div>
+      <div class="hero-badge"><div class="dot" style="background: var(--blue);"></div> Медцентры</div>
+      <div class="hero-badge"><div class="dot" style="background: var(--purple);"></div> Косметологии</div>
+      <div class="hero-badge"><div class="dot" style="background: var(--cyan);"></div> Ветклиники</div>
+      <div class="hero-badge"><div class="dot" style="background: var(--amber);"></div> Любые клиники</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 2: PROBLEM                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-problem" data-index="1">
     <div class="tag">Проблема</div>
-    <h2>Как сейчас работают клиники?</h2>
+    <h2 class="section-title">Как сейчас работают клиники?</h2>
     <div class="problems-grid">
       <div class="problem-card">
         <div class="icon">📋</div>
         <h3>Excel и блокноты</h3>
-        <p>Записи пациентов ведутся в тетрадях или таблицах. Информация теряется, дублируется.</p>
+        <p>Записи ведутся в тетрадях или таблицах. Данные теряются, дублируются, нет единой базы.</p>
       </div>
       <div class="problem-card">
         <div class="icon">🕐</div>
         <h3>Потеря времени</h3>
-        <p>Администратор тратит часы на ручной обзвон, подсчёт выручки и составление расписания.</p>
+        <p>Администратор тратит часы на обзвон пациентов, подсчёт выручки и расписание вручную.</p>
       </div>
       <div class="problem-card">
         <div class="icon">💸</div>
         <h3>Нет контроля финансов</h3>
-        <p>Владелец не видит реальную картину: сколько заработали, сколько потратили, какая зарплата.</p>
+        <p>Владелец не знает реальной картины: доходы, расходы, долги, зарплаты — всё в разных местах.</p>
       </div>
       <div class="problem-card">
         <div class="icon">📵</div>
         <h3>Пациенты не возвращаются</h3>
-        <p>Нет напоминаний о визитах. Пациенты забывают или уходят к конкурентам.</p>
+        <p>Нет напоминаний о визитах. Пациенты забывают, переносят или уходят к конкурентам.</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 3: Solution -->
-  <div class="slide slide-3" data-index="2">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 3: SOLUTION                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-solution" data-index="2">
     <div class="tag">Решение</div>
-    <h2>Всё в одном месте</h2>
-    <p class="desc">Единая система для управления клиникой — от записи пациента до расчёта зарплаты врача.</p>
+    <h2 class="section-title">Всё в одном месте</h2>
+    <p class="section-desc">Единая система для управления клиникой — от записи пациента до расчёта зарплаты врача.</p>
     <div class="solution-grid">
       <div class="solution-card">
         <div class="icon">📅</div>
         <h3>Расписание</h3>
-        <p>Удобный календарь с записью по врачам и свободным слотам</p>
+        <p>Календарь по врачам с автоматическим расчётом слотов</p>
       </div>
       <div class="solution-card">
         <div class="icon">👥</div>
         <h3>Пациенты</h3>
-        <p>Карточки пациентов с историей визитов и платежей</p>
+        <p>Карточки с историей визитов, диагнозами и файлами</p>
       </div>
       <div class="solution-card">
         <div class="icon">💰</div>
         <h3>Финансы</h3>
-        <p>Доходы, расходы, кассовые смены и зарплаты</p>
+        <p>Доходы, расходы, кассовые смены и зарплаты врачей</p>
       </div>
       <div class="solution-card">
-        <div class="icon">📱</div>
+        <div class="icon">💬</div>
         <h3>WhatsApp</h3>
-        <p>Автоматические напоминания пациентам о визите</p>
+        <p>Автоматические напоминания и уведомления пациентам</p>
       </div>
       <div class="solution-card">
         <div class="icon">📊</div>
         <h3>Аналитика</h3>
-        <p>Дашборд и отчёты в реальном времени</p>
+        <p>Дашборд, отчёты в реальном времени, экспорт в Excel и PDF</p>
       </div>
       <div class="solution-card">
         <div class="icon">🌐</div>
         <h3>Онлайн-запись</h3>
-        <p>Виджет на сайт — пациенты записываются сами</p>
+        <p>Виджет на сайт — пациенты записываются 24/7</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 4: Features -->
-  <div class="slide slide-4" data-index="3">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 4: FEATURES                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-features" data-index="3">
     <div class="tag">Возможности</div>
-    <h2>Что умеет система</h2>
+    <h2 class="section-title">Что умеет MEDORA</h2>
     <div class="features-grid">
       <div class="feature-item">
         <div class="icon">📅</div>
@@ -971,9 +1194,9 @@
         <p>По врачам, дням и слотам</p>
       </div>
       <div class="feature-item">
-        <div class="icon">🗂</div>
+        <div class="icon">🗂️</div>
         <h3>База пациентов</h3>
-        <p>ФИО, телефон, история</p>
+        <p>ФИО, история, файлы</p>
       </div>
       <div class="feature-item">
         <div class="icon">🏥</div>
@@ -993,7 +1216,7 @@
       <div class="feature-item">
         <div class="icon">💰</div>
         <h3>Зарплата врачей</h3>
-        <p>Авто-расчёт по % или ставке</p>
+        <p>% от выручки или ставка</p>
       </div>
       <div class="feature-item">
         <div class="icon">📊</div>
@@ -1001,19 +1224,24 @@
         <p>Excel и PDF экспорт</p>
       </div>
       <div class="feature-item">
-        <div class="icon">📱</div>
+        <div class="icon">💬</div>
         <h3>WhatsApp</h3>
-        <p>Напоминания за 24ч и 1ч</p>
+        <p>Авто-напоминания</p>
       </div>
       <div class="feature-item">
-        <div class="icon">👤</div>
+        <div class="icon">🔐</div>
         <h3>5 ролей доступа</h3>
-        <p>Владелец → Врач → Бухгалтер</p>
+        <p>От владельца до бухгалтера</p>
       </div>
       <div class="feature-item">
         <div class="icon">🏢</div>
         <h3>Мультифилиал</h3>
         <p>Управление сетью клиник</p>
+      </div>
+      <div class="feature-item">
+        <div class="icon">📋</div>
+        <h3>МКБ-10 и Эпикриз</h3>
+        <p>Медицинская документация</p>
       </div>
       <div class="feature-item">
         <div class="icon">📈</div>
@@ -1023,54 +1251,241 @@
     </div>
   </div>
 
-  <!-- Slide 5: Calendar -->
-  <div class="slide slide-5" data-index="4">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 5: МКБ-10 & EPICRISIS                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-medical" data-index="4">
+    <div class="tag">Медицинская документация</div>
+    <h2 class="section-title">МКБ-10 и Эпикриз</h2>
+    <p class="section-desc">Структурированная медицинская документация по международным стандартам — прямо в системе.</p>
+    <div class="medical-content">
+      <div class="medical-block">
+        <div class="block-icon">🔬</div>
+        <h3>Справочник МКБ-10</h3>
+        <p>943 диагноза для всех медицинских специальностей — от стоматологии до кардиологии.</p>
+        <ul class="medical-list">
+          <li>Быстрый поиск по коду или названию</li>
+          <li>Все разделы: K00–K14, J00–J99, I00–I99...</li>
+          <li>Множественные диагнозы в одном приёме</li>
+          <li>Автоподстановка при вводе</li>
+        </ul>
+        <div class="icd-demo">
+          <span class="code">K02.1</span><span class="sep">—</span>Кариес дентина<br>
+          <span class="code">J06.9</span><span class="sep">—</span>Острая инфекция верхних дыхательных путей<br>
+          <span class="code">I10</span><span class="sep" style="margin-right: 18px;">—</span>Эссенциальная гипертензия
+        </div>
+      </div>
+      <div class="medical-block">
+        <div class="block-icon">📄</div>
+        <h3>Эпикриз (PDF)</h3>
+        <p>Формирование эпикриза одним кликом — готовый PDF с шапкой клиники.</p>
+        <ul class="medical-list">
+          <li>Шапка с названием и адресом клиники</li>
+          <li>ФИО пациента, возраст, дата рождения</li>
+          <li>Лечащий врач, должность, специализация</li>
+          <li>Жалобы, анамнез, осмотр</li>
+          <li>Диагноз по МКБ-10</li>
+          <li>Лечение, назначения, рекомендации</li>
+          <li>Заключение врача и подпись</li>
+          <li>Автоматическое скачивание после завершения</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 6: WHATSAPP                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-whatsapp" data-index="5">
+    <div class="tag">Уведомления</div>
+    <h2 class="section-title">WhatsApp-уведомления</h2>
+    <p class="section-desc">Автоматические напоминания и подтверждения через WhatsApp. Пациенты не забывают о визите.</p>
+    <div class="whatsapp-content">
+      <div class="wa-features">
+        <div class="wa-feature">
+          <div class="wa-icon">🔔</div>
+          <div>
+            <h3>Напоминание за 24 часа</h3>
+            <p>Пациент получает сообщение за сутки до визита</p>
+          </div>
+        </div>
+        <div class="wa-feature">
+          <div class="wa-icon">⏰</div>
+          <div>
+            <h3>Напоминание за 1 час</h3>
+            <p>Повторное уведомление незадолго до приёма</p>
+          </div>
+        </div>
+        <div class="wa-feature">
+          <div class="wa-icon">✅</div>
+          <div>
+            <h3>Подтверждение записи</h3>
+            <p>Мгновенное сообщение при создании записи</p>
+          </div>
+        </div>
+        <div class="wa-feature">
+          <div class="wa-icon">💚</div>
+          <div>
+            <h3>Благодарность после визита</h3>
+            <p>Автоматическое «спасибо» после завершения приёма</p>
+          </div>
+        </div>
+      </div>
+      <div class="wa-phone">
+        <div class="wa-phone-header">
+          <div class="avatar">+</div>
+          <div>
+            <div class="name">Клиника «Здоровье»</div>
+            <div class="sub">WhatsApp Business</div>
+          </div>
+        </div>
+        <div class="wa-msg incoming">
+          Здравствуйте, Айгуль! Напоминаем, что завтра в 10:00 у вас приём у врача Бакытов А.М. Ждём вас!
+          <span class="time">14:30 ✓✓</span>
+        </div>
+        <div class="wa-msg incoming" style="margin-top: 4px;">
+          Айгуль, через 1 час ваш приём в клинике «Здоровье». Адрес: ул. Киевская, 120. До встречи!
+          <span class="time">09:00 ✓✓</span>
+        </div>
+        <div class="wa-msg incoming" style="margin-top: 4px;">
+          Спасибо за визит! Будем рады видеть вас снова. Ваш эпикриз сохранён в системе. 🙏
+          <span class="time">10:45 ✓✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 7: CALENDAR                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-calendar" data-index="6">
     <div class="tag">Интерфейс</div>
-    <h2>Удобный календарь</h2>
-    <p class="desc">Визуальное расписание по врачам. Одним кликом видно, кто свободен и кто занят.</p>
+    <h2 class="section-title">Удобный календарь</h2>
+    <p class="section-desc" style="max-width: 600px;">Визуальное расписание по врачам. Одним взглядом — кто свободен, кто занят.</p>
     <div class="calendar-preview">
       <div class="cal-header">
-        <h3>Понедельник, 31 марта 2026</h3>
+        <h3>📅 Среда, 16 апреля 2026</h3>
         <span>3 врача на смене</span>
       </div>
       <div class="cal-grid">
         <div></div>
-        <div class="cal-doctor-header" style="background: rgba(59,130,246,0.1); color: #60a5fa;">Айгуль К.</div>
-        <div class="cal-doctor-header" style="background: rgba(34,197,94,0.1); color: #4ade80;">Бакыт М.</div>
-        <div class="cal-doctor-header" style="background: rgba(139,92,246,0.1); color: #a78bfa;">Динара С.</div>
+        <div class="cal-doctor-header" style="background: rgba(59,130,246,0.08); color: #60a5fa;">Бакытов А.</div>
+        <div class="cal-doctor-header" style="background: rgba(34,197,94,0.08); color: #4ade80;">Сыдыкова Н.</div>
+        <div class="cal-doctor-header" style="background: rgba(139,92,246,0.08); color: #a78bfa;">Кенешова Д.</div>
 
         <div class="cal-time">09:00</div>
-        <div class="cal-slot busy">Асанов Т. — Осмотр</div>
+        <div class="cal-slot busy">Исаев Т. — Осмотр</div>
         <div class="cal-slot free"></div>
-        <div class="cal-slot busy-purple">Эркинов К. — Пломба</div>
+        <div class="cal-slot busy-purple">Алиева М. — УЗИ</div>
 
         <div class="cal-time">10:00</div>
-        <div class="cal-slot busy">Жумаев А. — Чистка</div>
-        <div class="cal-slot busy-green">Сыдыкова Н. — Удаление</div>
+        <div class="cal-slot busy">Орозова Д. — ЭКГ</div>
+        <div class="cal-slot busy-green">Жумаев А. — Анализы</div>
         <div class="cal-slot free"></div>
 
         <div class="cal-time">11:00</div>
         <div class="cal-slot free"></div>
-        <div class="cal-slot busy-green">Кенешов Б. — Коронка</div>
-        <div class="cal-slot busy-purple">Алиева М. — Осмотр</div>
+        <div class="cal-slot busy-green">Асанов К. — Консультация</div>
+        <div class="cal-slot busy-purple">Эркинов Б. — Осмотр</div>
 
         <div class="cal-time">12:00</div>
-        <div class="cal-slot busy">Орозова Д. — Имплант</div>
+        <div class="cal-slot busy">Сулейманова Н. — Терапия</div>
         <div class="cal-slot free"></div>
         <div class="cal-slot free"></div>
       </div>
     </div>
   </div>
 
-  <!-- Slide 6: Tariffs -->
-  <div class="slide slide-6" data-index="5">
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 8: CONTROL & SECURITY                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-control" data-index="7">
+    <div class="tag">Контроль и безопасность</div>
+    <h2 class="section-title">Полный контроль и защита данных</h2>
+    <div class="control-grid">
+      <div class="control-card">
+        <div class="icon">📋</div>
+        <h3>Журнал действий</h3>
+        <p>Все операции с пациентами и деньгами записываются в аудит-лог. Кто, когда, что изменил.</p>
+      </div>
+      <div class="control-card">
+        <div class="icon">👥</div>
+        <h3>5 ролей доступа</h3>
+        <p>Владелец, Главврач, Администратор, Врач, Бухгалтер — каждый видит только своё.</p>
+      </div>
+      <div class="control-card">
+        <div class="icon">🔐</div>
+        <h3>Двухфакторная (2FA)</h3>
+        <p>Дополнительная защита аккаунтов через одноразовые коды аутентификации.</p>
+      </div>
+      <div class="control-card">
+        <div class="icon">🔒</div>
+        <h3>Шифрование HTTPS</h3>
+        <p>Все данные передаются по защищённому каналу SSL/TLS. Сертификат Let's Encrypt.</p>
+      </div>
+      <div class="control-card">
+        <div class="icon">🏢</div>
+        <h3>Изоляция клиник</h3>
+        <p>Данные каждой клиники полностью изолированы. Мультитенантная архитектура.</p>
+      </div>
+      <div class="control-card">
+        <div class="icon">💾</div>
+        <h3>Резервные копии</h3>
+        <p>Автоматическое резервное копирование базы данных. Данные не потеряются.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 9: WIDGET                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-widget" data-index="8">
+    <div class="tag">Онлайн-запись</div>
+    <h2 class="section-title">Виджет для вашего сайта</h2>
+    <p class="section-desc">Пациенты записываются через ваш сайт 24/7. Запись мгновенно появляется в календаре.</p>
+    <div class="widget-features">
+      <div class="widget-feature">
+        <div class="wf-icon">🕐</div>
+        <div>
+          <h3>Работает 24/7</h3>
+          <p>Пациенты записываются даже ночью и в выходные</p>
+        </div>
+      </div>
+      <div class="widget-feature">
+        <div class="wf-icon">⚡</div>
+        <div>
+          <h3>Мгновенная синхронизация</h3>
+          <p>Запись сразу появляется в расписании врача</p>
+        </div>
+      </div>
+      <div class="widget-feature">
+        <div class="wf-icon">🎨</div>
+        <div>
+          <h3>Одна строка кода</h3>
+          <p>Встраивается на любой сайт за 2 минуты</p>
+        </div>
+      </div>
+      <div class="widget-feature">
+        <div class="wf-icon">📱</div>
+        <div>
+          <h3>Мобильная версия</h3>
+          <p>Идеально работает на телефонах и планшетах</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 10: TARIFFS                          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-tariffs" data-index="9">
     <div class="tag">Тарифы</div>
-    <h2>Простые и понятные цены</h2>
+    <h2 class="section-title">Простые и понятные цены</h2>
     <div class="tariffs-grid">
       <div class="tariff-card">
         <div class="tariff-name">Старт</div>
         <div class="tariff-price">5 000 <span>сом/мес</span></div>
-        <div class="tariff-desc">Для небольшой клиники с 1-3 врачами</div>
+        <div class="tariff-desc">Для небольшой клиники с 1–3 врачами</div>
         <ul class="tariff-features">
           <li>1 клиника</li>
           <li>До 3 врачей</li>
@@ -1088,8 +1503,8 @@
           <li>Всё из тарифа Старт</li>
           <li>До 10 врачей</li>
           <li>WhatsApp-напоминания</li>
-          <li>Зарплаты врачей</li>
-          <li>Отчёты Excel и PDF</li>
+          <li>МКБ-10 и Эпикриз</li>
+          <li>Зарплаты и отчёты</li>
           <li>Кассовые смены</li>
         </ul>
       </div>
@@ -1109,97 +1524,39 @@
     </div>
   </div>
 
-  <!-- Slide 7: Widget -->
-  <div class="slide slide-7" data-index="6">
-    <div class="tag">Онлайн-запись</div>
-    <h2>Виджет для вашего сайта</h2>
-    <p class="desc">Пациенты записываются на приём через ваш сайт 24/7. Запись автоматически появляется в календаре.</p>
-    <div class="widget-features">
-      <div class="widget-feature">
-        <div class="wf-icon">🕐</div>
-        <div>
-          <h3>Работает 24/7</h3>
-          <p>Пациенты записываются даже ночью и в выходные</p>
-        </div>
-      </div>
-      <div class="widget-feature">
-        <div class="wf-icon">⚡</div>
-        <div>
-          <h3>Мгновенная синхронизация</h3>
-          <p>Запись сразу появляется в расписании врача</p>
-        </div>
-      </div>
-      <div class="widget-feature">
-        <div class="wf-icon">🎨</div>
-        <div>
-          <h3>Встраивается на сайт</h3>
-          <p>Одна строка кода — и виджет на вашем сайте</p>
-        </div>
-      </div>
-      <div class="widget-feature">
-        <div class="wf-icon">📱</div>
-        <div>
-          <h3>Мобильная версия</h3>
-          <p>Отлично работает на телефонах и планшетах</p>
-        </div>
-      </div>
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SLIDE 11: CTA                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide slide-cta" data-index="10">
+    <div class="brand" style="margin-bottom: 24px;">
+      <div class="brand-icon">+</div>
+      <div class="brand-name">MEDORA</div>
     </div>
-  </div>
-
-  <!-- Slide 8: Security -->
-  <div class="slide slide-8" data-index="7">
-    <div class="tag">Безопасность</div>
-    <h2>Данные под защитой</h2>
-    <div class="security-grid">
-      <div class="security-card">
-        <div class="icon">🔒</div>
-        <h3>Шифрование HTTPS</h3>
-        <p>Все данные передаются по защищённому каналу SSL/TLS</p>
-      </div>
-      <div class="security-card">
-        <div class="icon">👥</div>
-        <h3>Разграничение доступа</h3>
-        <p>5 ролей — каждый видит только свои данные и функции</p>
-      </div>
-      <div class="security-card">
-        <div class="icon">📋</div>
-        <h3>Журнал действий</h3>
-        <p>Все операции с пациентами и деньгами записываются в аудит-лог</p>
-      </div>
-      <div class="security-card">
-        <div class="icon">☁️</div>
-        <h3>Облачное хранение</h3>
-        <p>Данные хранятся на сервере — ничего не потеряется</p>
-      </div>
-      <div class="security-card">
-        <div class="icon">🔐</div>
-        <h3>Двухфакторная аутентификация</h3>
-        <p>Дополнительная защита учётной записи через 2FA</p>
-      </div>
-      <div class="security-card">
-        <div class="icon">💾</div>
-        <h3>Резервные копии</h3>
-        <p>Автоматическое резервное копирование базы данных</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide 9: CTA -->
-  <div class="slide slide-9" data-index="8">
-    <div class="logo-icon" style="margin-bottom: 24px;">🦷</div>
-    <h2>Готовы начать?</h2>
-    <p class="desc">Подключите CRM и управляйте клиникой эффективно уже сегодня.</p>
+    <h2 class="cta-title">Готовы начать?</h2>
+    <p class="cta-desc">Подключите MEDORA и управляйте клиникой эффективно — уже сегодня.</p>
     <a href="https://clinic.kubatbektegin.dev" target="_blank" class="cta-button">Попробовать бесплатно</a>
     <div class="contact-info">
-      <p>Есть вопросы? Напишите нам</p>
-      <p style="margin-top: 8px;"><a href="tel:+996701140796">+996 (701) 14-07-96</a> &nbsp;·&nbsp; <a href="mailto:crmclinicsupport@gmail.com">crmclinicsupport@gmail.com</a></p>
+      <p>Есть вопросы? Свяжитесь с нами</p>
+      <p style="margin-top: 8px;">
+        <a href="tel:+996701140796">+996 (701) 14-07-96</a>
+        &nbsp;&middot;&nbsp;
+        <a href="mailto:crmclinicsupport@gmail.com">crmclinicsupport@gmail.com</a>
+      </p>
     </div>
   </div>
 
-  <!-- Navigation dots -->
+  <!-- Navigation -->
   <div class="nav" id="nav"></div>
-  <div class="slide-counter" id="counter">1 / 9</div>
+  <div class="slide-counter" id="counter">1 / 11</div>
   <div class="arrow-hint">← → или пробел для навигации</div>
+
+  <!-- Mobile swipe hint -->
+  <div class="swipe-hint" id="swipeHint">
+    <div class="swipe-arrow">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+    <div class="swipe-text">Листайте вправо</div>
+  </div>
 
   <script>
     const slides = document.querySelectorAll('.slide');
@@ -1207,7 +1564,6 @@
     const counter = document.getElementById('counter');
     let current = 0;
 
-    // Create nav dots
     slides.forEach((_, i) => {
       const dot = document.createElement('div');
       dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
@@ -1215,15 +1571,18 @@
       nav.appendChild(dot);
     });
 
+    const swipeHint = document.getElementById('swipeHint');
+
     function goTo(index) {
       if (index < 0 || index >= slides.length || index === current) return;
 
+      // Hide swipe hint on first navigation
+      if (swipeHint) swipeHint.classList.add('hidden');
+
       const direction = index > current ? 'forward' : 'backward';
 
-      // Remove all transition classes
-      slides.forEach(s => s.classList.remove('active', 'prev', 'next'));
+      slides.forEach(s => s.classList.remove('active', 'prev'));
 
-      // Old slide goes out
       if (direction === 'forward') {
         slides[current].classList.add('prev');
       } else {
@@ -1233,12 +1592,10 @@
 
       current = index;
 
-      // New slide comes in
       slides[current].style.opacity = '';
       slides[current].style.transform = '';
       slides[current].classList.add('active');
 
-      // Clean up old slides after transition
       setTimeout(() => {
         slides.forEach((s, i) => {
           if (i !== current) {
@@ -1261,7 +1618,6 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
     });
 
-    // Touch support
     let touchStartX = 0;
     document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
     document.addEventListener('touchend', (e) => {
